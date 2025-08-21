@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../fragmente/head') %>
+    <link rel="stylesheet" href="/resources/css/style2.css">
+</head>
+<body>
+    <header><%- include('../fragmente/header') %></header>
+
+    <main>
+        <h1 id="categtitle">EYES</h1>
+        <p id="categ">No matter how late you are, it's never too late for a little mascara. Eye makeup is the most crucial step, which makes your eyes pop and people turn their heads after you!</p>
+        <section>
+            <div id="products">
+                <% produse.forEach(function(produs) { %>
+                    <a href="/produse/<%= produs.id %>">
+                        <figure>
+                            <img class="images" src="<%= produs.imaginePrincipala %>" alt="<%= produs.nume %>">
+                            <figcaption>
+                                <p><b><%= produs.brand %></b></p>
+                                <p><%= produs.nume %></p>
+                                <p>$<%= produs.pret.toFixed(2) %></p>
+                            </figcaption>
+                        </figure>
+                    </a>
+                <% }); %>
+            </div>
+        </section>
+    </main>
+    <hr>
+    <footer><%- include('../fragmente/footer') %></footer>
+</body>
+</html>

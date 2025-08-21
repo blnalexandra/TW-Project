@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../fragmente/head') %>
+    <link rel="stylesheet" href="/resources/css/produs_css.css">
+</head>
+<body>
+    <header><%- include('../fragmente/header') %></header>
+
+    <main class="product-container">
+        <div class="product-grid">
+            <div class="product-images">
+                <img src="<%= produs.imaginePrincipala %>" alt="<%= produs.nume %>" id="mainImage">
+            </div>
+
+            <div class="product-info">
+                <h1><%= produs.brand %> - <%= produs.nume %></h1>
+                
+                <div class="price">
+                    $<%= produs.pret.toFixed(2) %>
+                    <% if (produs.pretVechi) { %>
+                        <span class="old-price">$<%= produs.pretVechi.toFixed(2) %></span>
+                    <% } %>
+                </div>
+                
+                <% if (produs.rating) { %>
+                    <div class="rating">
+                        <span class="stars">
+                            <% for(let i = 1; i <= 5; i++) { %>
+                                <%= i <= Math.floor(produs.rating) ? '★' : '☆' %>
+                            <% } %>
+                        </span>
+                        <span><%= produs.rating %> (<%= produs.numarRecenzii || 0 %> reviews)</span>
+                    </div>
+                <% } %>
+
+                <div class="stock">
+                    <% if (produs.stoc > 0) { %>
+                        <span class="in-stock">✓ In Stock (<%= produs.stoc %> available)</span>
+                    <% } else { %>
+                        <span class="out-stock">✗ Out of Stock</span>
+                    <% } %>
+                </div>
+
+                <div class="product-details">
+                    <h3>Description</h3>
+                    <p><%= produs.descriere %></p>
+                </div>
+
+                <div class="product-details">
+                    <h3>Product Details</h3>
+                    <p><strong>Type:</strong> <%= produs.tipProdus %></p>
+                    <p><strong>Volume:</strong> <%= produs.volum %></p>
+                    <% if (produs.culoare) { %>
+                        <p><strong>Color:</strong> <%= produs.culoare %></p>
+                    <% } %>
+                    <% if (produs.finish) { %>
+                        <p><strong>Finish:</strong> <%= produs.finish %></p>
+                    <% } %>
+                    <% if (produs.waterproof !== undefined) { %>
+                        <p><strong>Waterproof:</strong> <%= produs.waterproof ? 'Yes' : 'No' %></p>
+                    <% } %>
+                    <% if (produs.longLasting !== undefined) { %>
+                        <p><strong>Long Lasting:</strong> <%= produs.longLasting ? 'Yes' : 'No' %></p>
+                    <% } %>
+                </div>
+
+                <% if (produs.ingrediente) { %>
+                    <div class="product-details">
+                        <h3>Ingredients</h3>
+                        <p><%= produs.ingrediente %></p>
+                    </div>
+                <% } %>
+
+                <% if (produs.modDeUtilizare) { %>
+                    <div class="product-details">
+                        <h3>How to Use</h3>
+                        <p><%= produs.modDeUtilizare %></p>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+
+        <% if (produs.recenzii && produs.recenzii.length > 0) { %>
+            <div class="product-details">
+                <h3>Customer Reviews</h3>
+                <% produs.recenzii.forEach(function(recenzie) { %>
+                    <div class="review">
+                        <div class="review-header">
+                            <strong><%= recenzie.nume %></strong>
+                            <span class="stars">
+                                <% for(let i = 1; i <= 5; i++) { %>
+                                    <%= i <= recenzie.rating ? '★' : '☆' %>
+                                <% } %>
+                            </span>
+                        </div>
+                        <p><%= recenzie.comentariu %></p>
+                        <small class="review-date"><%= recenzie.data %></small>
+                    </div>
+                <% }); %>
+            </div>
+        <% } %>
+    </main>
+
+    <hr>
+    <footer><%- include('../fragmente/footer') %></footer>
+</body>
+</html>

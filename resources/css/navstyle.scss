@@ -1,0 +1,269 @@
+body {
+  --primary-color: #333333;
+  --secondary-color: #ffffff;
+  --accent-color: #ff0000;
+  --hover-overlay-color: rgba(255, 0, 0, 0.1);
+  --border-color: #ffcccc;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --submenu-bg: #ffffff;
+  --submenu-hover-bg: #f0f0f0;
+  --underline-color: #ff0000;
+}
+
+$font-size-base: 1vw;
+$font-family: monospace;
+$padding-base: 30px;
+$margin-base: 10px;
+$border-radius: 4px;
+$transition-duration: 0.3s;
+$transition-timing: ease-in-out;
+$submenu-min-width: 150px;
+$submenu-padding: 10px 20px;
+
+@mixin transition($properties: all, $duration: $transition-duration, $timing: $transition-timing) {
+  transition: $properties $duration $timing;
+}
+
+@mixin hover-overlay {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scaleY(0);
+  width: 90%;
+  height: 90%;
+  background-color: var(--hover-overlay-color);
+  border: 2px solid var(--border-color);
+  border-radius: $border-radius;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3);
+  @include transition(transform, $transition-duration, $transition-timing);
+  z-index: 1;
+}
+
+@mixin double-underline {
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background-color: var(--underline-color);
+    @include transition(width, $transition-duration, $transition-timing);
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--underline-color);
+    @include transition(width, $transition-duration * 1.2, $transition-timing);
+  }
+}
+
+$menu-items: 5;
+
+nav {
+  display: flex;
+  justify-content: center;
+  
+  .navbar {
+    display: inline-block;
+    font-size: $font-size-base;
+    font-family: $font-family;
+    text-align: center;
+    padding: $padding-base;
+    margin-bottom: $margin-base;
+    position: relative;
+    overflow: visible;
+    
+    @for $i from 1 through $menu-items {
+      &:nth-child(#{$i}) {
+        $delay: ($i - 1) * 0.1s;
+        
+        &::before {
+          transition-delay: $delay;
+        }
+        
+        ul {
+          transition-delay: $delay * 0.5;
+        }
+      }
+    }
+    
+    > a {
+      text-decoration: none;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      padding: $margin-base;
+      border-radius: $border-radius;
+      @include transition(color, $transition-duration, $transition-timing);
+      
+      .text-home {
+        display: inline;
+      }
+      
+      .icon-home {
+        display: none;
+      }
+      
+      &::before {
+        @include hover-overlay;
+      }
+      
+      &:hover {
+        color: var(--accent-color);
+        
+        &::before {
+          transform: translate(-50%, -50%) scaleY(1);
+        }
+      }
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      transform: translateX(-50%) scale(0);
+      transform-origin: top left;
+      background-color: var(--submenu-bg);
+      min-width: $submenu-min-width;
+      box-shadow: 0 8px 16px var(--shadow-color);
+      border-radius: $border-radius;
+      z-index: 10;
+      opacity: 0;
+      @include transition((transform, opacity), $transition-duration, $transition-timing);
+      
+      li {
+        $submenu-items: 4;
+        
+        @for $j from 1 through $submenu-items {
+          &:nth-child(#{$j}) {
+            $item-delay: $j * 0.05s;
+            
+            a {
+              transition-delay: $item-delay;
+              
+              &::after,
+              &::before {
+                transition-delay: $item-delay;
+              }
+            }
+          }
+        }
+        
+        a {
+          text-decoration: none;
+          display: block;
+          padding: $submenu-padding;
+          background-color: var(--submenu-bg);
+          color: var(--primary-color);
+          position: relative;
+          @include transition((background-color, color), $transition-duration, $transition-timing);
+          @include double-underline;
+          
+          &:hover {
+            background-color: var(--submenu-hover-bg);
+            color: var(--accent-color);
+            
+            &::after {
+              width: 80%;
+            }
+            
+            &::before {
+              width: 60%;
+            }
+          }
+          
+          &:first-child {
+            border-top-left-radius: $border-radius;
+            border-top-right-radius: $border-radius;
+          }
+          
+          &:last-child {
+            border-bottom-left-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+          }
+        }
+      }
+    }
+    
+    &:hover {
+      ul {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    .navbar {
+      font-size: 2.5vw;
+      padding: $padding-base * 0.7;
+      
+      ul {
+        min-width: $submenu-min-width * 1.2;
+        left: 0;
+        transform: translateX(0) scale(0);
+        
+        &:hover,
+        .navbar:hover & {
+          transform: translateX(0) scale(1);
+        }
+      }
+    }
+  }
+}
+
+$animation-steps: 10;
+$current-step: 1;
+
+@while $current-step <= $animation-steps {
+  .navbar:nth-child(#{$current-step}) {
+    &::before {
+      animation-delay: #{$current-step * 0.1}s;
+    }
+  }
+  
+  $current-step: $current-step + 1;
+}
+
+nav {
+  .navbar {
+    > a,
+    ul li a {
+      &:focus {
+        outline: 2px solid var(--accent-color);
+        outline-offset: 2px;
+      }
+      
+      &:focus-visible {
+        outline: 2px solid var(--accent-color);
+        outline-offset: 2px;
+      }
+    }
+  }
+}
+
+* {
+  &::before,
+  &::after {
+    will-change: transform, opacity, width;
+  }
+}

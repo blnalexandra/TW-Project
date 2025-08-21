@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../fragmente/head') %>
+    <link rel="stylesheet" href="/resources/css/style2.css">
+</head>
+<body>
+    <header><%- include('../fragmente/header') %></header>
+
+    <main>
+        <h1 id="categtitle">LIPS</h1>
+        <p id="categ">
+            Lips can make or break the makeup look and also make it go from 0 to 100, 
+            so don't waste any time and shop for the best lipstick for your complexion! 
+            Either bold or natural, we know it's going to look great.
+        </p>
+        <section>
+            <div id="products">
+                <% produse.forEach(function(produs) { %>
+                    <a href="/produse/<%= produs.id %>">
+                        <figure>
+                            <img class="images" src="<%= produs.imaginePrincipala %>" alt="<%= produs.nume %>">
+                            <figcaption>
+                                <p><b><%= produs.brand %></b></p>
+                                <p><%= produs.nume %></p>
+                                <p>$<%= produs.pret.toFixed(2) %></p>
+                            </figcaption>
+                        </figure>
+                    </a>
+                <% }); %>
+            </div>
+        </section>
+    </main>
+    <hr>
+    <footer><%- include('../fragmente/footer') %></footer>
+</body>
+</html>

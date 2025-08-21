@@ -1,0 +1,9 @@
+body{
+    padding-left:3vw;
+    padding-right:3vw;
+}
+
+#poza img{
+    width: 150px;
+    height:200px;
+}

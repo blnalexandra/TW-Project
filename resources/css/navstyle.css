@@ -1,0 +1,260 @@
+body {
+  --primary-color: #333333;
+  --secondary-color: #ffffff;
+  --accent-color: #ff0000;
+  --hover-overlay-color: rgba(255, 0, 0, 0.1);
+  --border-color: #ffcccc;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --submenu-bg: #ffffff;
+  --submenu-hover-bg: #f0f0f0;
+  --underline-color: #ff0000;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+}
+nav .navbar {
+  display: inline-block;
+  font-size: 1vw;
+  font-family: monospace;
+  text-align: center;
+  padding: 30px;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: visible;
+}
+nav .navbar:nth-child(1)::before {
+  transition-delay: 0s;
+}
+nav .navbar:nth-child(1) ul {
+  transition-delay: 0s;
+}
+nav .navbar:nth-child(2)::before {
+  transition-delay: 0.1s;
+}
+nav .navbar:nth-child(2) ul {
+  transition-delay: 0.05s;
+}
+nav .navbar:nth-child(3)::before {
+  transition-delay: 0.2s;
+}
+nav .navbar:nth-child(3) ul {
+  transition-delay: 0.1s;
+}
+nav .navbar:nth-child(4)::before {
+  transition-delay: 0.3s;
+}
+nav .navbar:nth-child(4) ul {
+  transition-delay: 0.15s;
+}
+nav .navbar:nth-child(5)::before {
+  transition-delay: 0.4s;
+}
+nav .navbar:nth-child(5) ul {
+  transition-delay: 0.2s;
+}
+nav .navbar > a {
+  text-decoration: none;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  padding: 10px;
+  border-radius: 4px;
+  transition: color 0.3s ease-in-out;
+}
+nav .navbar > a .text-home {
+  display: inline;
+}
+nav .navbar > a .icon-home {
+  display: none;
+}
+nav .navbar > a::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scaleY(0);
+  width: 90%;
+  height: 90%;
+  background-color: var(--hover-overlay-color);
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1;
+}
+nav .navbar > a:hover {
+  color: var(--accent-color);
+}
+nav .navbar > a:hover::before {
+  transform: translate(-50%, -50%) scaleY(1);
+}
+nav .navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%) scale(0);
+  transform-origin: top left;
+  background-color: var(--submenu-bg);
+  min-width: 150px;
+  box-shadow: 0 8px 16px var(--shadow-color);
+  border-radius: 4px;
+  z-index: 10;
+  opacity: 0;
+  transition: transform, opacity 0.3s ease-in-out;
+}
+nav .navbar ul li:nth-child(1) a {
+  transition-delay: 0.05s;
+}
+nav .navbar ul li:nth-child(1) a::after, nav .navbar ul li:nth-child(1) a::before {
+  transition-delay: 0.05s;
+}
+nav .navbar ul li:nth-child(2) a {
+  transition-delay: 0.1s;
+}
+nav .navbar ul li:nth-child(2) a::after, nav .navbar ul li:nth-child(2) a::before {
+  transition-delay: 0.1s;
+}
+nav .navbar ul li:nth-child(3) a {
+  transition-delay: 0.15s;
+}
+nav .navbar ul li:nth-child(3) a::after, nav .navbar ul li:nth-child(3) a::before {
+  transition-delay: 0.15s;
+}
+nav .navbar ul li:nth-child(4) a {
+  transition-delay: 0.2s;
+}
+nav .navbar ul li:nth-child(4) a::after, nav .navbar ul li:nth-child(4) a::before {
+  transition-delay: 0.2s;
+}
+nav .navbar ul li a {
+  text-decoration: none;
+  display: block;
+  padding: 10px 20px;
+  background-color: var(--submenu-bg);
+  color: var(--primary-color);
+  position: relative;
+  transition: background-color, color 0.3s ease-in-out;
+}
+nav .navbar ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background-color: var(--underline-color);
+  transition: width 0.3s ease-in-out;
+}
+nav .navbar ul li a::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--underline-color);
+  transition: width 0.36s ease-in-out;
+}
+nav .navbar ul li a:hover {
+  background-color: var(--submenu-hover-bg);
+  color: var(--accent-color);
+}
+nav .navbar ul li a:hover::after {
+  width: 80%;
+}
+nav .navbar ul li a:hover::before {
+  width: 60%;
+}
+nav .navbar ul li a:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+nav .navbar ul li a:last-child {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+nav .navbar:hover ul {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  nav .navbar {
+    font-size: 2.5vw;
+    padding: 21px;
+  }
+  nav .navbar ul {
+    min-width: 180px;
+    left: 0;
+    transform: translateX(0) scale(0);
+  }
+  nav .navbar ul:hover, .navbar:hover nav .navbar ul {
+    transform: translateX(0) scale(1);
+  }
+}
+.navbar:nth-child(1)::before {
+  animation-delay: 0.1s;
+}
+
+.navbar:nth-child(2)::before {
+  animation-delay: 0.2s;
+}
+
+.navbar:nth-child(3)::before {
+  animation-delay: 0.3s;
+}
+
+.navbar:nth-child(4)::before {
+  animation-delay: 0.4s;
+}
+
+.navbar:nth-child(5)::before {
+  animation-delay: 0.5s;
+}
+
+.navbar:nth-child(6)::before {
+  animation-delay: 0.6s;
+}
+
+.navbar:nth-child(7)::before {
+  animation-delay: 0.7s;
+}
+
+.navbar:nth-child(8)::before {
+  animation-delay: 0.8s;
+}
+
+.navbar:nth-child(9)::before {
+  animation-delay: 0.9s;
+}
+
+.navbar:nth-child(10)::before {
+  animation-delay: 1s;
+}
+
+nav .navbar > a:focus,
+nav .navbar ul li a:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+nav .navbar > a:focus-visible,
+nav .navbar ul li a:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+*::before, *::after {
+  will-change: transform, opacity, width;
+}/*# sourceMappingURL=navstyle.css.map */

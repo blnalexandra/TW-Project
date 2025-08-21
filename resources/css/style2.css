@@ -1,0 +1,137 @@
+
+:root {
+    --colorblack: #000000;
+    --colorred: #E61C2C;
+    --colorgrey: #A7A7A7;
+    --colorpink: #E184A1;
+    --colorwhite: #FFFFFF;
+}
+
+nav{
+    display: flex;
+}
+
+.navbar{
+    display:inline-block;
+    font-size: 16px;
+    font-family: monospace;
+    text-align: center;
+    padding:30px;
+    margin-bottom: 10px;
+    width:100%;
+    
+}
+.navbar ul li{
+    list-style: none;
+    text-align: left;
+    
+}
+header div h1 a{
+    text-decoration: none;
+    color:inherit;
+    font-family:'Courier New', Courier, monospace;
+    font-size: larger;
+}
+#basket{
+    float:right;
+    padding: 10px;
+    width:40px;
+    height:40px;
+    
+}
+header div h1{
+text-align: center;
+}
+.navbar ul li a{
+    list-style: none;
+    text-align: left;
+    text-decoration: none;
+    display: flex;
+}
+.navbar a{
+   text-decoration: none;
+   color:inherit;
+   margin-bottom: 8px;
+}
+.navlist{
+    margin-bottom: 7px;
+}
+footer{
+    margin-top: 30px;
+ }
+ footer p{
+     text-align: center;
+     font-family: monospace;
+     font-size: large;
+ }
+ #contact ul li a{
+     text-decoration: none;
+     color:inherit;
+     font-family: monospace;
+ }
+ #contact ul li{
+     display:inline-block;
+     margin-right: 15px;
+ 
+ }
+ #contact{
+     margin-left: auto;
+     margin-right: auto;
+     text-align: center;
+     padding:5px;
+ }
+ #up{
+     text-decoration: none;
+     color:inherit;
+     font-family: monospace;
+ }
+ #up p{
+     text-align: center;
+     font-size: small;
+     border-style: solid;
+     border-color:var(--colorblack);
+     margin-left: 44%;
+     margin-right: 44%;
+}
+#return{
+    color:inherit;
+}
+.images{
+    width: 300px;
+    height: 300px;
+}
+#categtitle{
+    text-align: center;
+    font-family: monospace;
+}
+#categ{
+    text-align: center;
+    margin-left: 30%;
+    margin-right: 30%;
+    font-family: monospace;
+    margin-bottom: 10%;
+}
+#products figcaption{
+    font-family: monospace;
+}
+#products a{
+    font-family: monospace;
+    text-decoration: none;
+    color: inherit;
+}
+#products figure{
+    display:inline-block;
+    border-style: solid;
+    border-color: var(--colorblack);
+    border-width: 1px;
+}
+#products{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+}
+#products figcaption p b{
+    font-family: monospace;
+    font-size: 15px;
+}
